@@ -9,6 +9,7 @@ from qfluentwidgets import FluentIcon as FIF
 from .utils.gallery_interface import GalleryInterface
 from .utils.setting_interface import SettingInterface
 from .utils.blank_interface import BlankInterface
+from .products.product_interface import ProductInterface
 from .utils.widgets_interface import WidgetsInterface
 from .utils.table_view_interface import TableViewInterface
 
@@ -29,6 +30,7 @@ class MainWindow(FluentWindow):
 
         # create sub interface
         self.homeInterface = HomeInterface(self)
+        self.productInterface = ProductInterface(self)
         self.widgetsInterface = WidgetsInterface(self)
         self.tableViewInterface = TableViewInterface(self)
         self.blankInterface = BlankInterface(self)
@@ -48,6 +50,7 @@ class MainWindow(FluentWindow):
         # add navigation items
         t = Translator()
         self.addSubInterface(self.homeInterface, FIF.HOME, "Home")
+        self.addSubInterface(self.productInterface, FIF.APPLICATION, "Product")
         self.addSubInterface(self.widgetsInterface, FIF.GAME, self.trans['widgets'])
         self.addSubInterface(self.tableViewInterface, FIF.LAYOUT, self.trans['table_view'])
         self.addSubInterface(self.blankInterface, FIF.DOCUMENT, t.blank)

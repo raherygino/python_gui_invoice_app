@@ -17,10 +17,10 @@ class BannerWidget(QWidget):
     def __init__(self, parent=None):
         super().__init__(parent=parent)
         self.setFixedHeight(336)
-
+        self.trans = Translate(Lang().current).text
 
         self.vBoxLayout = QVBoxLayout(self)
-        self.galleryLabel = QLabel('PyQt Fluents', self)
+        self.galleryLabel = QLabel(self.trans['app_name'], self)
         self.banner = QPixmap(':/gallery/images/header1.png')
         self.linkCardView = LinkCardView(self)
 
