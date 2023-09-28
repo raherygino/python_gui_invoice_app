@@ -43,6 +43,8 @@
       "spin_box": "Spin box",
       "date_picker": "Date picker",
       "switch_button": "Switch button",
-      "table_view": "TableView"
+      "table_view": "TableView",
+
+      "products" : "Produits"
     }
 }

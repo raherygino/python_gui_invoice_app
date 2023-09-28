@@ -26,7 +26,9 @@ class MainWindow(FluentWindow):
     def __init__(self):
         super().__init__()
         self.initWindow()
-        self.trans = Translate(Lang().current).text
+        #self.trans = Translate(Lang().current).text
+        
+        t = Translator()
 
         # create sub interface
         self.homeInterface = HomeInterface(self)
@@ -50,9 +52,9 @@ class MainWindow(FluentWindow):
         # add navigation items
         t = Translator()
         self.addSubInterface(self.homeInterface, FIF.HOME, "Home")
-        self.addSubInterface(self.productInterface, FIF.APPLICATION, "Product")
-        self.addSubInterface(self.widgetsInterface, FIF.GAME, self.trans['widgets'])
-        self.addSubInterface(self.tableViewInterface, FIF.LAYOUT, self.trans['table_view'])
+        self.addSubInterface(self.productInterface, FIF.APPLICATION, t.products)
+        self.addSubInterface(self.widgetsInterface, FIF.GAME, t.widgets)
+        self.addSubInterface(self.tableViewInterface, FIF.LAYOUT, t.table_view)
         self.addSubInterface(self.blankInterface, FIF.DOCUMENT, t.blank)
         self.navigationInterface.addSeparator()
         pos = NavigationItemPosition.SCROLL

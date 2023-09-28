@@ -14,8 +14,8 @@ class ProductInterface(GalleryInterface):
         t = Translator()
         self.trans = Translate(Lang().current).text
         super().__init__(
-            title=t.blank,
-            subtitle='Blank page',
+            title=t.products,
+            subtitle='',
             parent=parent
         )
 
