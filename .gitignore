@@ -13,6 +13,7 @@ build/
 develop-eggs/
 dist/
 downloads/
+qfluentswidgets/
 eggs/
 .eggs/
 lib/
@@ -154,8 +155,6 @@ dmypy.json
 # pytype static type analyzer
 .pytype/
 
-# qfluentswidgets
-.qfluentswidgets/
 
 # Cython debug symbols
 cython_debug/
