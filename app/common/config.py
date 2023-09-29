@@ -1,6 +1,7 @@
 # coding:utf-8
 from enum import Enum
 import json
+import codecs
 
 from PyQt5.QtCore import QLocale
 from qfluentwidgets import (qconfig, QConfig, ConfigItem, OptionsConfigItem, BoolValidator,
@@ -56,6 +57,20 @@ class Config(QConfig):
     # software update
     checkUpdateAtStartUp = ConfigItem("Update", "CheckUpdateAtStartUp", True, BoolValidator())
 
+class CurrentTheme():
+
+    def __init__(self):
+        self.config = {}
+        with codecs.open('app/config/config.json', 'r', 'utf-8') as file:
+            self.config = json.load(file)
+
+    def isDark(self)-> bool:
+        if self.config['QFluentWidgets']['ThemeMode'] == "Dark":
+            return True
+        else :
+            return False
+
+        
 
 YEAR = 2023
 AUTHOR = "zhiyiYo"

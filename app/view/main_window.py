@@ -2,6 +2,7 @@
 from PyQt5.QtCore import QUrl, QSize
 from PyQt5.QtGui import QIcon, QDesktopServices
 from PyQt5.QtWidgets import QApplication
+from PyQt5 import QtWidgets
 
 from qfluentwidgets import NavigationAvatarWidget, NavigationItemPosition, MessageBox, FluentWindow, SplashScreen
 from qfluentwidgets import FluentIcon as FIF
@@ -20,6 +21,8 @@ from ..common.signal_bus import signalBus
 from ..common.translator import Translator
 from ..common.Translate import Translate
 from ..common import resource
+from .products.add_dialog import Ui_AddProductDialog
+from qfluentwidgets import isDarkTheme
 
 class MainWindow(FluentWindow):
 
@@ -90,6 +93,7 @@ class MainWindow(FluentWindow):
         QApplication.processEvents()
 
     def onSupport(self):
+        
         w = MessageBox(
             'Voir mon profile',
             'Vous voulez voir mon profil dans le web ?',
@@ -99,6 +103,7 @@ class MainWindow(FluentWindow):
         w.cancelButton.setText('Non')
         if w.exec():
             QDesktopServices.openUrl(QUrl(SUPPORT_URL))
+        
 
     def switchToSample(self, routeKey, index):
         """ switch to sample """
