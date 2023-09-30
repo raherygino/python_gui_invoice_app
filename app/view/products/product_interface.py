@@ -6,11 +6,14 @@ from ...common.Translate import Translate
 from ...common.config import Lang
 from ...components import *
 from qfluentwidgets import (isDarkTheme, FluentIcon, Action, 
-    CommandBar, TransparentDropDownPushButton, setFont, RoundMenu, TableWidget)
-from .add_dialog import Ui_AddProductDialog
+    CommandBar, TransparentDropDownPushButton, setFont, RoundMenu, TableWidget, LineEdit)
+
 from PyQt5 import QtWidgets
 from PyQt5.QtCore import Qt
-from PyQt5.QtWidgets import QTableWidgetItem, QHeaderView
+from PyQt5.QtWidgets import QTableWidgetItem, QHeaderView, QFrame, QHBoxLayout
+from ...components.dialog.dialog import MessageBox
+from .add_product_dialog import ProductDialog
+
 
 class ProductInterface(GalleryInterface):
     """ Product interface """
@@ -107,17 +110,4 @@ class ProductInterface(GalleryInterface):
         return button
 
     def show_dialog(self):
-        Dialog = QtWidgets.QDialog()
-        Dialog.setWindowFlags(Qt.FramelessWindowHint)
-        Dialog.setAttribute(Qt.WA_TranslucentBackground)
-        ui = Ui_AddProductDialog()
-        ui.setupUi(Dialog)
-        #Dialog.setWindowFlags()
-        '''
-        if isDarkTheme():
-            ui.dialog.setStyleSheet(u"QDialog {background-color: #454545;} QLabel { color: #ffffff }")
-        else:
-            ui.dialog.setStyleSheet(u"QDialog {background-color: #f4f4f4;}")
-        '''
-
-        Dialog.exec()
+        ProductDialog(self)
