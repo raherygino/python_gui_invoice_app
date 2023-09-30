@@ -86,7 +86,7 @@ class ProductInterface(GalleryInterface):
         action = Action(icon, text, self)
         if key == "add" :
             action.triggered.connect(lambda: self.show_dialog())
-        action.triggered.connect(lambda: print(key))
+        #action.triggered.connect(lambda: print(key))
         self.commandBar.addAction(action)
         #self.commandBar.childAt(0)
 

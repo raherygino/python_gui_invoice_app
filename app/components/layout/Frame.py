@@ -10,7 +10,14 @@ class Frame(QFrame):
         else:
             self.layout = QHBoxLayout(self)
         
+        
         self.setObjectName(name.replace(' ', '-'))
 
     def addWidget(self, widget):
         self.layout.addWidget(widget)
+    
+    def setMargins(self, left:int , top:int, right:int, bottom:int):
+        self.layout.setContentsMargins(left,top,right,bottom)
+        
+    def setSpacing(self, space: int):
+        self.layout.setSpacing(space)

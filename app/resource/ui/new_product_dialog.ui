@@ -35,7 +35,8 @@
    <item>
     <widget class="QFrame" name="dialog_content">
      <property name="styleSheet">
-      <string notr="true">#dialog_content {background-color: #454545; border-radius: 10px} QLabel { color: #ffffff }</string>
+      <string notr="true">#dialog_content {background-color: #454545; border-radius: 10px;border: solid 2px; border-color: rgb(0, 0, 0);} QLabel { color: #ffffff }
+</string>
      </property>
      <property name="frameShape">
       <enum>QFrame::StyledPanel</enum>

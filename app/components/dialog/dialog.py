@@ -12,13 +12,11 @@ class Ui_MessageBox:
     yesSignal = pyqtSignal()
     cancelSignal = pyqtSignal()
 
-    def _setUpUi(self, title: str, content: QFrame, parent):
+    def _setUpUi(self, content: QFrame, parent):
         #self.content = content
-        self.titleLabel = QLabel(title, parent)
+        #self.titleLabel = QLabel(title, parent)
         self.contentLabel = content
         self.contentLabel.setMinimumSize(QSize(520, 0))
-
-
         self.buttonGroup = QFrame(parent)
         self.yesButton = PrimaryPushButton(self.tr('Confirm'), self.buttonGroup)
         self.cancelButton = QPushButton(self.tr('Cancel'), self.buttonGroup)
@@ -48,13 +46,13 @@ class Ui_MessageBox:
     def _adjustText(self):
         if self.isWindow():
             if self.parent():
-                w = max(self.titleLabel.width(), self.parent().width())
-                chars = max(min(w / 9, 140), 30)
+                #w = max(self.titleLabel.width(), self.parent().width())
+                chars = 140
             else:
                 chars = 100
         else:
-            w = max(self.titleLabel.width(), self.window().width())
-            chars = max(min(w / 9, 100), 30)
+            #w = max(self.titleLabel.width(), self.window().width())
+            chars = 130
 
         # self.contentLabel.setText(TextWrap.wrap(self.content, chars, False)[0])
 
@@ -65,9 +63,9 @@ class Ui_MessageBox:
         self.vBoxLayout.addWidget(self.buttonGroup, 0, Qt.AlignBottom)
         self.vBoxLayout.setSizeConstraint(QVBoxLayout.SetMinimumSize)
 
-        self.textLayout.setSpacing(12)
-        self.textLayout.setContentsMargins(24, 24, 24, 24)
-        self.textLayout.addWidget(self.titleLabel, 0, Qt.AlignTop)
+        self.textLayout.setSpacing(0)
+        self.textLayout.setContentsMargins(0, 0, 0, 0)
+        #self.textLayout.addWidget(self.titleLabel, 0, Qt.AlignTop)
         self.textLayout.addWidget(self.contentLabel, 0, Qt.AlignTop)
         #self.textLayout.addWidget(self.content, 0, Qt.AlignTop)
 
@@ -85,7 +83,7 @@ class Ui_MessageBox:
         self.yesSignal.emit()
 
     def __setQss(self):
-        self.titleLabel.setObjectName("titleLabel")
+        #self.titleLabel.setObjectName("titleLabel")
         self.contentLabel.setObjectName("contentLabel")
         self.buttonGroup.setObjectName('buttonGroup')
         self.cancelButton.setObjectName('cancelButton')
@@ -101,9 +99,9 @@ class MessageBox(MaskDialogBase, Ui_MessageBox):
     yesSignal = pyqtSignal()
     cancelSignal = pyqtSignal()
 
-    def __init__(self, title: str, content: QFrame, parent=None):
+    def __init__(self, content: QFrame, parent=None):
         super().__init__(parent=parent)
-        self._setUpUi(title, content, self.widget)
+        self._setUpUi(content, self.widget)
         # self.layo
 
         self.setShadowEffect(60, (0, 10), QColor(0, 0, 0, 50))
@@ -111,9 +109,11 @@ class MessageBox(MaskDialogBase, Ui_MessageBox):
         self._hBoxLayout.removeWidget(self.widget)
         self._hBoxLayout.addWidget(self.widget, 1, Qt.AlignCenter)
         self.buttonGroup.setMinimumWidth(280)
+        '''
         width = max(self.contentLabel.width(), self.titleLabel.width()) + 48
         height = self.contentLabel.y() + self.contentLabel.height() + 105
         self.widget.setFixedSize(width, height)
+        '''
 
 
     def eventFilter(self, obj, e: QEvent):
