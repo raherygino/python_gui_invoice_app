@@ -12,7 +12,7 @@ from PyQt5 import QtWidgets
 from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import QTableWidgetItem, QHeaderView, QFrame, QHBoxLayout
 from ...components.dialog.dialog import MessageBox
-from .add_product_dialog import ProductDialog
+from .product_dialog import DialogProduct
 
 
 class ProductInterface(GalleryInterface):
@@ -34,10 +34,6 @@ class ProductInterface(GalleryInterface):
 
         # change button style
         self.commandBar.setToolButtonStyle(Qt.ToolButtonTextBesideIcon)
-        #self.commandBar.setMenuDropDown(False)
-        #self.commandBar.setButtonTight(True)
-        #setFont(self.commandBar, 14)
-
         self.addButton(FluentIcon.ADD, 'add', "Ajouter")
         self.commandBar.addSeparator()
         self.commandBar.addAction(Action(FluentIcon.EDIT, 'Edit', triggered=self.onEdit, checkable=True))
@@ -46,12 +42,9 @@ class ProductInterface(GalleryInterface):
 
         # add custom widget
         self.commandBar.addWidget(self.dropDownButton)
-
         # add hidden actions
         self.commandBar.addHiddenAction(Action(FluentIcon.SCROLL, 'Sort', triggered=lambda: print('排序')))
         self.commandBar.addHiddenAction(Action(FluentIcon.SETTING, 'Settings', shortcut='Ctrl+S'))
- 
-        #self.content.addWidget(self.row)
 
         self.tableView = TableWidget(self)
         self.tableView.setWordWrap(False)
@@ -110,4 +103,12 @@ class ProductInterface(GalleryInterface):
         return button
 
     def show_dialog(self):
-        ProductDialog(self)
+        self.dialog = DialogProduct(parent=self)
+        btn = self.dialog.getYesBtn()
+        btn.clicked.connect(self.hello_world)
+        self.dialog.show()
+    
+    def hello_world(self):
+        code = self.dialog.inputCode.text()
+        print(code)
+        self.dialog.accept()
