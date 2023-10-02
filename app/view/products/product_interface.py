@@ -110,5 +110,7 @@ class ProductInterface(GalleryInterface):
     
     def hello_world(self):
         code = self.dialog.inputCode.text()
-        print(code)
+        designation = self.dialog.inputDesignation.text()
+        category = self.dialog.selectCategory.text()
+        print(category)
         self.dialog.accept()

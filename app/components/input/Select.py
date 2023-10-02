@@ -15,3 +15,6 @@ class Select(QFrame):
     
     def onChange(self, slot):
         return self.comboBox.currentTextChanged.connect(slot)
+    
+    def text(self) -> str:
+        return self.comboBox.text()

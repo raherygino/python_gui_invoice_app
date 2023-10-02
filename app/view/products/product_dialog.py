@@ -7,6 +7,7 @@ from ...components.dialog.mask import MaskDialogBase
 from ...components.dialog.dialog import Ui_MessageBox
 from ...components.layout.Frame import Frame
 from ...components.input.InputText import InputText
+from ...components.input.Select import Select
 
 class DialogProduct(MaskDialogBase, Ui_MessageBox):
 
@@ -35,8 +36,8 @@ class DialogProduct(MaskDialogBase, Ui_MessageBox):
         self.inputDesignation = InputText("Designation", self.row)
 
         self.row_2 = Frame('horizontal', 'row_2', parent=parent)
-        self.inputCategory = InputText("Categorie", self.row_2)
-        self.inputSubCategory = InputText("Sous categorie", self.row_2)
+        self.selectCategory = Select("Catégorie", ["Options 1", "Options 2"], self.row_2)
+        self.selectSubCategory = Select("Sous catégorie", ["Options 1", "Options 2"], self.row_2)
 
         self.layoutTitle.setMargins(8,4,0,0)
         self.row.setMargins(0,0,0,0)
