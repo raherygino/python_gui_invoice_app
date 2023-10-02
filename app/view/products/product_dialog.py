@@ -8,6 +8,7 @@ from ...components.dialog.dialog import Ui_MessageBox
 from ...components.layout.Frame import Frame
 from ...components.input.InputText import InputText
 from ...components.input.Select import Select
+from ...model.database import Database
 
 class DialogProduct(MaskDialogBase, Ui_MessageBox):
 

@@ -13,6 +13,7 @@ from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import QTableWidgetItem, QHeaderView, QFrame, QHBoxLayout
 from ...components.dialog.dialog import MessageBox
 from .product_dialog import DialogProduct
+from ...model.database import Database
 
 
 class ProductInterface(GalleryInterface):
@@ -27,6 +28,7 @@ class ProductInterface(GalleryInterface):
             parent=parent
         )
         
+        self.db = Database()
         self.content = Frame('vertical', 'content', parent=parent)
         self.commandBar = CommandBar(self)
         self.dropDownButton = self.createDropDownButton()
@@ -112,5 +114,6 @@ class ProductInterface(GalleryInterface):
         code = self.dialog.inputCode.text()
         designation = self.dialog.inputDesignation.text()
         category = self.dialog.selectCategory.text()
-        print(category)
+        self.db.query("INSERT INTO products(code, designation) VALUES('"+code+"', '"+designation+"')")
+        print(self.db.fetch())
         self.dialog.accept()
